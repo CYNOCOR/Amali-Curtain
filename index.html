@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amali Curtain Center - Tailored by Hand in Horana</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ---- Home page only ---- */
+
+    /* Hero with looping background video (home page exclusively) */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(160deg, #3a2e22, var(--ink));
+    }
+
+    .hero-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20, 15, 10, 0.55) 0%, rgba(20, 15, 10, 0.72) 60%, rgba(20, 15, 10, 0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.9rem);
+      line-height: 1.08;
+    }
+
+    .hero p.lede {
+      max-width: 34rem;
+      margin-top: 1.5rem;
+      color: #EFE7DA;
+      font-size: 1.05rem;
+    }
+
+    .hero .eyebrow {
+      color: var(--cream-4);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.25rem;
+    }
+
+    .hero-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      padding: 0.6rem 1.1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-rating strong {
+      font-family: var(--font-display);
+    }
+
+    .hero-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--cream-1);
+    }
+
+    .hero-call:hover {
+      text-decoration: underline;
+    }
+
+    /* Feature cards */
+    .feature-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 760px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--brass-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-grid h3 {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-grid p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+
+    /* Aftercare strip */
+    .aftercare-strip {
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+    }
+
+    .aftercare-strip .eyebrow {
+      color: var(--cream-4);
+    }
+
+    .aftercare-strip h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      margin-bottom: 1rem;
+      max-width: 42rem;
+      margin-inline: auto;
+    }
+
+    .aftercare-strip p {
+      max-width: 38rem;
+      margin: 0 auto;
+      color: #D9CFC2;
+      font-size: 0.95rem;
+    }
+
+    /* Gallery preview */
+    .preview-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 700px) {
+      .preview-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .preview-item {
+      position: relative;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--cream-1);
+    }
+
+    .preview-item:nth-child(even) {
+      background: var(--cream-4);
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .preview-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .preview-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.7rem;
+      color: var(--ink-soft);
+    }
+
+    .gallery-cta {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* Testimonial preview */
+    .testimonial-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 700px) {
+      .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: 0.9rem;
+      padding: 1.6rem;
+      box-shadow: 0 2px 10px rgba(43, 36, 32, 0.06);
+    }
+
+    .testimonial-card p.quote {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-card p.who {
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Final CTA */
+    .cta-band {
+      background: var(--cream-1);
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-band p {
+      color: var(--ink-soft);
+      margin-bottom: 1.75rem;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Amali <span>Curtain</span> Center</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="https://wa.me/94774104159" aria-label="Chat on WhatsApp" class="icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4C7.63 4 4.05 7.58 4.05 12c0 1.4.37 2.77 1.06 3.98L4 20l4.14-1.09a7.94 7.94 0 0 0 3.9 1.02h.01c4.42 0 8-3.58 8-8 0-2.14-.83-4.15-2.35-5.61zM12.05 18.4h-.01a6.4 6.4 0 0 1-3.26-.9l-.23-.14-2.42.64.65-2.36-.15-.24a6.42 6.42 0 0 1-.99-3.4c0-3.55 2.9-6.45 6.46-6.45 1.72 0 3.34.67 4.56 1.89a6.41 6.41 0 0 1 1.89 4.57c0 3.55-2.9 6.45-6.5 6.45z"
+              fill="var(--ink)" />
+          </svg>
+        </a>
+        <a href="tel:+94774104159" aria-label="Call us" class="icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"
+              fill="var(--ink)" />
+          </svg>
+        </a>
+        <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+      </div>
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav"
+        aria-label="Toggle menu">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav">
+      <nav class="mobile-nav-inner" aria-label="Mobile">
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/94774104159">Chat on WhatsApp</a>
+        <a href="tel:+94774104159">Call: 077 410 4159</a>
+        <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media" id="hero-media">
+      <!-- Add your own clip at assets/video/hero.mp4 (and a poster at assets/images/hero-poster.jpg).
+         If the video can't load, JS swaps in the gradient background above. -->
+      <video id="hero-video" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="container hero-content reveal">
+      <p class="eyebrow">A Family Workshop &middot; Horana</p>
+      <h1 class="font-display">Curtains, tailored<br>by hand for<br>your home.</h1>
+      <p class="lede">Every curtain from Amali is measured, cut, and installed by our family - no showroom staff, no
+        middlemen. You work directly with the person making your home beautiful.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+        <a href="gallery.html" class="btn btn-outline" style="border-color:#fff; color:#fff;">See Our Work</a>
+      </div>
+      <a href="tel:+94774104159" class="hero-call">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"
+            fill="currentColor" />
+        </svg>
+        Prefer to talk? Call 077 410 4159
+      </a>
+      <div class="hero-rating"><strong>5.0 ★</strong> rated on Google</div>
+    </div>
+  </section>
+
+  <!-- WHY DIRECT -->
+  <section class="section-lg" style="background:var(--cream-1)">
+    <div class="container">
+      <h2 class="section-title">Why work directly with us</h2>
+      <div class="feature-grid">
+        <div class="reveal reveal-1">
+          <p class="feature-num">01</p>
+          <h3>Direct access</h3>
+          <p>No showroom staff or sales layer between you and the craftsman. You speak with the person who measures,
+            cuts, and installs your curtains.</p>
+        </div>
+        <div class="reveal reveal-2">
+          <p class="feature-num">02</p>
+          <h3>Honest pricing</h3>
+          <p>Without a commercial showroom to maintain, more of what you spend goes into premium fabric and careful
+            tailoring.</p>
+        </div>
+        <div class="reveal reveal-3">
+          <p class="feature-num">03</p>
+          <h3>Accountable craftsmanship</h3>
+          <p>One family stands behind every stitch and every install - and stays reachable long after the job is done.
+          </p>
+        </div>
+      </div>
+      <p class="text-center" style="margin-top:2.5rem;">
+        <a href="about.html" class="btn btn-outline">Read our full story</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- AFTERCARE STRIP -->
+  <section class="section-lg aftercare-strip">
+    <div class="container">
+      <p class="eyebrow">The Amali Difference</p>
+      <h2 class="font-display">A curtain isn't finished the day it's installed.</h2>
+      <p>Amali customers get ongoing cleaning and after-service - not a one-time sale. We stay part of your home's
+        upkeep for years, something most retail shops simply don't offer.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY PREVIEW -->
+  <section class="section-lg" style="background:var(--cream-3)">
+    <div class="container">
+      <h2 class="section-title">Recent transformations</h2>
+      <div class="preview-grid reveal">
+        <div class="preview-item">
+          <img src="assets/images/gallery/1.jpg" alt="Living room curtains installed by Amali Curtain Center"
+            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="preview-fallback" style="display:none">Living room</div>
+        </div>
+        <div class="preview-item">
+          <img src="assets/images/gallery/2.jpg" alt="Sheer drapes installed in a bedroom by Amali Curtain Center"
+            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="preview-fallback" style="display:none">Bedroom sheers</div>
+        </div>
+        <div class="preview-item">
+          <img src="assets/images/gallery/3.jpg" alt="Blackout lining curtains in a dining area by Amali Curtain Center"
+            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="preview-fallback" style="display:none">Dining area</div>
+        </div>
+        <div class="preview-item">
+          <img src="assets/images/gallery/4.jpg"
+            alt="Curtain rods and rings installed on a balcony by Amali Curtain Center" loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="preview-fallback" style="display:none">Balcony rods</div>
+        </div>
+      </div>
+      <div class="gallery-cta"><a href="gallery.html" class="btn btn-dark">View full gallery</a></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL PREVIEW -->
+  <section class="section-lg" style="background:var(--cream-1)">
+    <div class="container">
+      <h2 class="section-title">What our customers say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal reveal-1">
+          <p class="quote">"They have a wide variety of curtains and offer excellent design help. The owner and his son
+            were patient and helpful, making it easy for me to curate the perfect curtains - what I really liked was
+            their great aftercare service."</p>
+          <p class="who">- B. Kalubowila, Google review</p>
+        </div>
+        <div class="testimonial-card reveal reveal-2">
+          <p class="quote">"Even in a small town like Horana, this place provides services with a very high level of
+            quality. Having previously used shops in Piliyandala and Colombo, I found Amali gives real confidence in the
+            work you get done."</p>
+          <p class="who">- Sujeewa Batagoda, Google review</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section-lg cta-band">
+    <div class="container">
+      <h2 class="font-display">Let's talk about your space</h2>
+      <p>Tell us a little about your home and we'll get back to you on WhatsApp.</p>
+      <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Visit us</h4>
+          <p>No. 71/, Amali Curtains Center,<br>3rd Lane, Victoria Estate,<br>Horana 12400</p>
+        </div>
+        <div>
+          <h4>Reach us</h4>
+          <p><a href="tel:+94774104159">077 410 4159</a></p>
+          <p><a href="https://www.facebook.com/AmaliCurtainoffical/" target="_blank" rel="noopener"
+              class="link-underline">Facebook page</a></p>
+        </div>
+        <div>
+          <h4>Hours</h4>
+          <p>Mon–Thu: 7:30 AM – 9:30 PM<br>Fri–Sun: 7:30 AM – 10:30 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Amali Curtain Center &middot; Horana, Sri Lanka</p>
+        <p>Tailored by hand, one home at a time.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M12 5L5 12M12 5l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <script src="js/nav.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/home.js"></script>
+</body>
+
+</html>
