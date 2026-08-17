@@ -203,12 +203,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   overflow: hidden;
   transition: max-height 0.35s ease;
 }
-.mobile-nav.open { max-height: 22rem; }
+.mobile-nav.open { max-height: 28rem; }
 .mobile-nav-inner {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0 1.5rem 1.5rem;
+  padding: 0.5rem 1.25rem 1.5rem;
   font-size: 0.9rem;
   color: var(--ink-soft);
 }
@@ -236,7 +236,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--ink);
   transform: scaleX(1);
 }
-.mobile-nav-inner .btn { width: fit-content; }
+.mobile-nav-inner .btn {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding: 0.9rem 1.2rem;
+}
 
 @media (max-width: 859px) {
   .site-header .container {

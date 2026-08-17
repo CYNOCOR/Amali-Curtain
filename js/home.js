@@ -17,5 +17,19 @@
   if (prefersReducedMotion.matches) {
     video.removeAttribute('autoplay');
     video.pause();
+    return;
   }
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const offsetY = Math.min(scrollY * 0.16, 180);
+    const scale = 1.06 + (scrollY * 0.00022);
+
+    media.style.transform = `translate3d(0, ${offsetY}px, 0) scale(${scale})`;
+    video.style.transform = `scale(${1.08 + scrollY * 0.00012})`;
+  };
+
+  updateParallax();
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax);
 })();
