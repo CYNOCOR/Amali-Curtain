@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amali Curtain Center - Tailored by Hand in Horana</title>
+  <link rel="icon" type="image/png" href="assets/logos/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
@@ -47,6 +50,35 @@
     .hero-content {
       position: relative;
       z-index: 1;
+      /* Center hero content over the video */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1rem;
+      min-height: 88vh; /* keep same vertical rhythm as .hero */
+    }
+
+    .hero-brand {
+      display: block;
+      /* larger default size on desktop, will be tuned by media queries below */
+      width: clamp(220px, 24vw, 480px);
+      margin: 0 0 1rem 0;
+      /* remove decorative background, border, shadow to show plain logo */
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .hero-brand img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
     .hero h1 {
@@ -72,6 +104,91 @@
       margin-top: 2.25rem;
     }
 
+    /* Minimal hero actions layout */
+    .hero-actions-minimal {
+      margin-top: 1.75rem;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Glass-style buttons used on the hero */
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-glass:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-1px);
+    }
+
+    .btn-glass.btn-outline {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 700px) {
+      .hero-content {
+        /* increased height to accommodate larger mobile logo */
+        min-height: 68vh;
+        padding: 2rem 1rem;
+        gap: 0.6rem;
+      }
+
+      .hero-brand {
+        /* larger logo on mobile: min 180px, ideal 60vw, max 420px */
+        width: clamp(180px, 60vw, 420px);
+      }
+
+      .hero-actions-minimal {
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+
+      .btn-glass {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-glass.btn-outline {
+        background: rgba(255,255,255,0.02);
+      }
+
+      .hero-call {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      .site-header .container {
+        padding-inline: 1rem;
+      }
+
+      /* hide full nav on small screens; keep hamburger to open mobile nav */
+      .main-nav { display: none; }
+    }
+
+    @media (min-width: 701px) {
+      .hero-brand { width: clamp(220px, 24vw, 480px); }
+    }
+
     .hero-rating {
       display: inline-flex;
       align-items: center;
@@ -87,19 +204,6 @@
 
     .hero-rating strong {
       font-family: var(--font-display);
-    }
-
-    .hero-call {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-      font-size: 0.9rem;
-      color: var(--cream-1);
-    }
-
-    .hero-call:hover {
-      text-decoration: underline;
     }
 
     /* Feature cards */
@@ -262,8 +366,11 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">Amali <span>Curtain</span> Center</a>
+      <a href="index.html" class="logo" aria-label="Amali Curtain Center home">
+        <img src="assets/logos/logo2b.png" alt="Amali Curtain Center logo" class="logo-mark">
+      </a>
       <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
         <a href="about.html">Our Story</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
@@ -294,6 +401,7 @@
     </div>
     <div id="mobile-nav" class="mobile-nav">
       <nav class="mobile-nav-inner" aria-label="Mobile">
+        <a href="index.html">Home</a>
         <a href="about.html">Our Story</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
@@ -307,30 +415,20 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-media" id="hero-media">
-      <!-- Add your own clip at assets/video/hero.mp4 (and a poster at assets/images/hero-poster.jpg).
-         If the video can't load, JS swaps in the gradient background above. -->
-      <video id="hero-video" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
-        <source src="assets/video/hero.mp4" type="video/mp4">
+      <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero-poster.jpg">
+        <source src="assets/background.mp4" type="video/mp4">
       </video>
     </div>
     <div class="container hero-content reveal">
-      <p class="eyebrow">A Family Workshop &middot; Horana</p>
-      <h1 class="font-display">Curtains, tailored<br>by hand for<br>your home.</h1>
-      <p class="lede">Every curtain from Amali is measured, cut, and installed by our family - no showroom staff, no
-        middlemen. You work directly with the person making your home beautiful.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
-        <a href="gallery.html" class="btn btn-outline" style="border-color:#fff; color:#fff;">See Our Work</a>
+      <div class="hero-brand" aria-label="Amali Curtain Center logo">
+        <img src="assets/logos/logo.png" alt="Amali Curtain Center logo" style="width:100%;height:auto;display:block;">
       </div>
-      <a href="tel:+94774104159" class="hero-call">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"
-            fill="currentColor" />
-        </svg>
-        Prefer to talk? Call 077 410 4159
-      </a>
-      <div class="hero-rating"><strong>5.0 ★</strong> rated on Google</div>
+
+      <!-- Minimal hero: show only logo, two glass buttons and phone -->
+      <div class="hero-actions hero-actions-minimal">
+        <a href="contact.html" class="btn btn-glass">Request a Consultation</a>
+        <a href="gallery.html" class="btn btn-glass btn-outline">See Our Work</a>
+      </div>
     </div>
   </section>
 
@@ -405,27 +503,6 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL PREVIEW -->
-  <section class="section-lg" style="background:var(--cream-1)">
-    <div class="container">
-      <h2 class="section-title">What our customers say</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial-card reveal reveal-1">
-          <p class="quote">"They have a wide variety of curtains and offer excellent design help. The owner and his son
-            were patient and helpful, making it easy for me to curate the perfect curtains - what I really liked was
-            their great aftercare service."</p>
-          <p class="who">- B. Kalubowila, Google review</p>
-        </div>
-        <div class="testimonial-card reveal reveal-2">
-          <p class="quote">"Even in a small town like Horana, this place provides services with a very high level of
-            quality. Having previously used shops in Piliyandala and Colombo, I found Amali gives real confidence in the
-            work you get done."</p>
-          <p class="who">- Sujeewa Batagoda, Google review</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FINAL CTA -->
   <section class="section-lg cta-band">
     <div class="container">
@@ -434,40 +511,6 @@
       <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>Visit us</h4>
-          <p>No. 71/, Amali Curtains Center,<br>3rd Lane, Victoria Estate,<br>Horana 12400</p>
-        </div>
-        <div>
-          <h4>Reach us</h4>
-          <p><a href="tel:+94774104159">077 410 4159</a></p>
-          <p><a href="https://www.facebook.com/AmaliCurtainoffical/" target="_blank" rel="noopener"
-              class="link-underline">Facebook page</a></p>
-        </div>
-        <div>
-          <h4>Hours</h4>
-          <p>Mon–Thu: 7:30 AM – 9:30 PM<br>Fri–Sun: 7:30 AM – 10:30 PM</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> Amali Curtain Center &middot; Horana, Sri Lanka</p>
-        <p>Tailored by hand, one home at a time.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- BACK TO TOP -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 19V5M12 5L5 12M12 5l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" />
-    </svg>
-  </button>
 
   <script src="js/nav.js"></script>
   <script src="js/reveal.js"></script>
