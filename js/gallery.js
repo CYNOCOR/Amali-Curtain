@@ -1,59 +1,100 @@
 /* =========================================================
    gallery.js — gallery page only
-   Builds the masonry grid from assets/images/gallery/1.jpg..N.jpg
-   (newest first) and drives the click-to-enlarge lightbox.
+   Builds the masonry grid from gallery data objects
+   and drives the click-to-enlarge lightbox with metadata.
    ========================================================= */
 (function () {
   const galleryEl = document.getElementById('full-gallery');
   if (!galleryEl) return;
 
-  // Captions describe each install — swap freely, and add/remove
-  // entries to match how many photos you actually have.
-  const galleryCaptions = [
-    'Living room', 'Bedroom sheer drapes', 'Dining area blackout lining',
-    'Balcony rods & rings', 'Hall pleated finish', 'Father tailoring on-site',
-    'Kitchen valance', 'Study room drapes', 'Guest room curtains',
-    'Window seat nook', 'Front porch curtains', 'Master bedroom blackout'
+  // Sample data with metadata (title, description, location)
+  const galleryData = [
+    {
+      src: 'assets/h1.jpg',
+      title: 'Living Room Elegance',
+      description: 'Double-pleated sheer and blackout combination providing a sophisticated look and optimal light control.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/h2.jpg',
+      title: 'Master Bedroom Sheers',
+      description: 'Lightweight linen sheers offering daytime privacy while maintaining natural light flow.',
+      location: 'Bandaragama'
+    },
+    {
+      src: 'assets/h3.jpg',
+      title: 'Dining Area Velvet',
+      description: 'Heavyweight velvet drapes with thermal blackout lining for a cozy, luxurious dining experience.',
+      location: 'Panadura'
+    },
+    {
+      src: 'assets/h4.jpg',
+      title: 'Balcony Brass Rods',
+      description: 'Custom brass-finish rods with easy-glide rings for wide balcony doors, tailored by hand.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/h2.jpg',
+      title: 'Study Room Curtains',
+      description: 'Minimalist pleated curtains perfectly suited for a home office environment.',
+      location: 'Moratuwa'
+    },
+    {
+      src: 'assets/h3.jpg',
+      title: 'Guest Room Blackout',
+      description: 'Complete blackout drapes ensuring maximum comfort and privacy for guests.',
+      location: 'Horana'
+    }
   ];
 
-  for (let n = galleryCaptions.length; n >= 1; n--) {
-    const caption = galleryCaptions[n - 1];
+  // Build the masonry grid
+  galleryData.forEach((data, index) => {
     const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.style.background = n % 2 === 0 ? 'var(--cream-4)' : 'var(--cream-1)';
+    item.className = 'gallery-item has-image';
+    item.style.background = index % 2 === 0 ? 'var(--cream-4)' : 'var(--cream-1)';
+    // Store index to retrieve data later
+    item.dataset.index = index;
     item.innerHTML = `
-      <img src="assets/images/gallery/${n}.jpg" alt="${caption} — curtains by Amali Curtain Center" loading="lazy"
-           onload="this.closest('.gallery-item').classList.add('has-image');"
+      <img src="${data.src}" alt="${data.title} — curtains by Amali Curtain Center" loading="lazy"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="gallery-fallback">assets/images/gallery/${n}.jpg &middot; ${caption}</div>
+      <div class="gallery-fallback">${data.title}</div>
     `;
     galleryEl.appendChild(item);
-  }
+  });
 
   /* ---- Lightbox ---- */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDesc = document.getElementById('lightbox-desc');
+  const lightboxLocation = document.querySelector('.location-text');
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
   const lightboxCounter = document.getElementById('lightbox-counter');
 
-  function getLoadedGalleryImages() {
-    return Array.from(document.querySelectorAll('.gallery-item img'))
-      .filter((img) => img.style.display !== 'none');
-  }
-
-  let galleryImages = [];
   let currentIndex = 0;
 
   function showLightboxImage(index) {
-    if (!galleryImages.length) return;
-    currentIndex = (index + galleryImages.length) % galleryImages.length;
-    const img = galleryImages[currentIndex];
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightboxCounter.textContent = galleryImages.length > 1 ? `${currentIndex + 1} / ${galleryImages.length}` : '';
-    const multi = galleryImages.length > 1;
+    if (!galleryData.length) return;
+    
+    // Wrap around index
+    currentIndex = (index + galleryData.length) % galleryData.length;
+    const itemData = galleryData[currentIndex];
+    
+    lightboxImg.src = itemData.src;
+    lightboxImg.alt = itemData.title;
+    
+    // Update metadata
+    lightboxTitle.textContent = itemData.title;
+    lightboxDesc.textContent = itemData.description;
+    lightboxLocation.textContent = itemData.location;
+
+    // Update counter
+    lightboxCounter.textContent = galleryData.length > 1 ? `${currentIndex + 1} / ${galleryData.length}` : '';
+    
+    // Navigation visibility
+    const multi = galleryData.length > 1;
     lightboxPrev.style.display = multi ? 'flex' : 'none';
     lightboxNext.style.display = multi ? 'flex' : 'none';
   }
@@ -61,21 +102,33 @@
   galleryEl.addEventListener('click', (e) => {
     const item = e.target.closest('.gallery-item');
     if (!item) return;
-    const img = item.querySelector('img');
-    if (!img || img.style.display === 'none') return;
-    galleryImages = getLoadedGalleryImages();
-    showLightboxImage(galleryImages.indexOf(img));
+    
+    const index = parseInt(item.dataset.index, 10);
+    if (isNaN(index)) return;
+
+    showLightboxImage(index);
     lightbox.classList.add('open');
   });
 
   function closeLightbox() {
     lightbox.classList.remove('open');
-    lightboxImg.src = '';
+    // Short delay to clear content after fade out transition
+    setTimeout(() => {
+      lightboxImg.src = '';
+    }, 300);
   }
+
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showLightboxImage(currentIndex - 1); });
   lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showLightboxImage(currentIndex + 1); });
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  
+  // Close when clicking the background overlay
+  lightbox.addEventListener('click', (e) => { 
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+      closeLightbox(); 
+    }
+  });
+
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();

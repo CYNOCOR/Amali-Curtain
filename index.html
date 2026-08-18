@@ -5,6 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amali Curtain Center - Tailored by Hand in Horana</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Amali Curtain Center offers over 20 years of bespoke curtain tailoring, bringing timeless elegance and expert craftsmanship to homes across Horana and beyond.">
+  <meta property="og:title" content="Amali Curtain Center - Tailored by Hand in Horana">
+  <meta property="og:description" content="Over 20 years of bespoke curtain tailoring, bringing timeless elegance and expert craftsmanship to homes across Horana and beyond.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="icon" type="image/png" href="assets/logos/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +27,7 @@
     .hero {
       position: relative;
       min-height: 88vh;
+      min-height: 88svh; /* Better support for mobile browsers with dynamic address bars */
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -57,7 +66,9 @@
       justify-content: center;
       text-align: center;
       gap: 1rem;
-      min-height: 88vh; /* keep same vertical rhythm as .hero */
+      min-height: 88vh;
+      min-height: 88svh;
+      /* keep same vertical rhythm as .hero */
     }
 
     .hero-brand {
@@ -118,7 +129,8 @@
 
     @media (max-width: 640px) {
       .hero-actions-minimal {
-        width: min(72vw, 280px);
+        width: 100%;
+        max-width: 320px;
         margin-top: 1.3rem;
         flex-direction: column;
         gap: 0.7rem;
@@ -134,9 +146,9 @@
       border-radius: 999px;
       font-weight: 600;
       color: #fff;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
       backdrop-filter: blur(8px) saturate(120%);
       -webkit-backdrop-filter: blur(8px) saturate(120%);
       text-decoration: none;
@@ -153,13 +165,13 @@
     }
 
     .btn-glass:hover {
-      background: rgba(255,255,255,0.09);
+      background: rgba(255, 255, 255, 0.09);
       transform: translateY(-1px);
     }
 
     .btn-glass.btn-outline {
-      background: rgba(255,255,255,0.03);
-      border-color: rgba(255,255,255,0.22);
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.22);
     }
 
     .hero-rating {
@@ -450,13 +462,13 @@
       <h2 class="section-title">Recent transformations</h2>
       <div class="preview-grid reveal">
         <div class="preview-item">
-          <img src="assets/h1.jpg" alt="Living room curtains installed by Amali Curtain Center"
-            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="assets/h1.jpg" alt="Living room curtains installed by Amali Curtain Center" loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="preview-fallback" style="display:none">Living room</div>
         </div>
         <div class="preview-item">
-          <img src="assets/h2.jpg" alt="Sheer drapes installed in a bedroom by Amali Curtain Center"
-            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="assets/h2.jpg" alt="Sheer drapes installed in a bedroom by Amali Curtain Center" loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="preview-fallback" style="display:none">Bedroom sheers</div>
         </div>
         <div class="preview-item">
@@ -465,9 +477,8 @@
           <div class="preview-fallback" style="display:none">Dining area</div>
         </div>
         <div class="preview-item">
-          <img src="assets/h4.jpg"
-            alt="Curtain rods and rings installed on a balcony by Amali Curtain Center" loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="assets/h4.jpg" alt="Curtain rods and rings installed on a balcony by Amali Curtain Center"
+            loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="preview-fallback" style="display:none">Balcony rods</div>
         </div>
       </div>
@@ -488,6 +499,7 @@
   <script src="js/reveal.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/home.js"></script>
+  <script src="js/scroll-fx.js"></script>
 </body>
 
 </html>
