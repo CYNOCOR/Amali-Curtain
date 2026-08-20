@@ -37,7 +37,7 @@
               <path d="M13.8 20v-7.2h2.5l.4-2.8h-2.9V7.4c0-.8.3-1.4 1.5-1.4H17V3.3c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.9v2.3h-2.5v2.8h2.5V20h3.7z" fill="currentColor"/>
             </svg>
           </a>
-          <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <a class="social-link" href="https://www.instagram.com/amalicurtain/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="currentColor" stroke-width="1.8"/>
               <circle cx="12" cy="12" r="3.8" stroke="currentColor" stroke-width="1.8"/>
