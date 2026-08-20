@@ -1,5 +1,4 @@
 /* =========================================================
-   scroll-fx.js — Fluid scroll effects for every page
    • Scroll-progress bar at top of viewport
    • Header: transparent → frosted on scroll, compact mode
    • Parallax on hero & section backgrounds

@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Amali Curtain Center</title>
-  
+
   <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="Get in touch with Amali Curtain Center for bespoke curtain tailoring, measuring, and installation in Horana.">
+  <meta name="description"
+    content="Get in touch with Amali Curtain Center for bespoke curtain tailoring, measuring, and installation in Horana.">
   <meta property="og:title" content="Contact - Amali Curtain Center">
-  <meta property="og:description" content="Get in touch with Amali Curtain Center for bespoke curtain tailoring, measuring, and installation in Horana.">
+  <meta property="og:description"
+    content="Get in touch with Amali Curtain Center for bespoke curtain tailoring, measuring, and installation in Horana.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -63,6 +65,7 @@
     }
 
     .field input,
+    .field select,
     .field textarea {
       width: 100%;
       border: 1px solid var(--cream-4);
@@ -72,6 +75,11 @@
       font-size: 0.9rem;
       background: #fff;
       color: var(--ink);
+    }
+
+    .field select {
+      cursor: pointer;
+      appearance: auto;
     }
 
     .field textarea {
@@ -160,7 +168,7 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="https://wa.me/94774104159" aria-label="Chat on WhatsApp" class="icon-btn">
+        <a href="https://wa.me/94779074068" aria-label="Chat on WhatsApp" class="icon-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4C7.63 4 4.05 7.58 4.05 12c0 1.4.37 2.77 1.06 3.98L4 20l4.14-1.09a7.94 7.94 0 0 0 3.9 1.02h.01c4.42 0 8-3.58 8-8 0-2.14-.83-4.15-2.35-5.61zM12.05 18.4h-.01a6.4 6.4 0 0 1-3.26-.9l-.23-.14-2.42.64.65-2.36-.15-.24a6.42 6.42 0 0 1-.99-3.4c0-3.55 2.9-6.45 6.46-6.45 1.72 0 3.34.67 4.56 1.89a6.41 6.41 0 0 1 1.89 4.57c0 3.55-2.9 6.45-6.5 6.45z"
@@ -189,7 +197,7 @@
         <a href="about.html">Our Story</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
-        <a href="https://wa.me/94774104159">Chat on WhatsApp</a>
+        <a href="https://wa.me/94779074068">Chat on WhatsApp</a>
         <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
       </nav>
     </div>
@@ -199,7 +207,7 @@
   <section class="page-hero container">
     <p class="eyebrow">Get In Touch</p>
     <h1 class="font-display">Let's talk about your space</h1>
-    <p>Fill in a few details and we'll continue the conversation with you on WhatsApp - or call and email us directly.
+    <p>Fill in your details and choose your preferred contact method (WhatsApp or Email) to send a consultation request.
     </p>
   </section>
 
@@ -210,16 +218,28 @@
       <div class="reveal reveal-1">
         <form id="consult-form" class="contact-form" novalidate>
           <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required maxlength="100">
+            <label for="contact-method">Preferred Contact Method</label>
+            <select id="contact-method" name="contact_method">
+              <option value="whatsapp" selected>WhatsApp (Fastest response)</option>
+              <option value="email">Email</option>
+            </select>
           </div>
           <div class="field">
-            <label for="phone">Phone / WhatsApp</label>
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required maxlength="100" placeholder="e.g. John Doe">
+          </div>
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required maxlength="150" placeholder="e.g. name@example.com">
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp *</label>
             <input type="tel" id="phone" name="phone" required maxlength="20" placeholder="e.g. 077 123 4567">
           </div>
           <div class="field">
             <label for="message">Tell us about your space</label>
-            <textarea id="message" name="message" rows="5" maxlength="2000"></textarea>
+            <textarea id="message" name="message" rows="5" maxlength="2000"
+              placeholder="Room dimensions, curtain preferences, or any questions..."></textarea>
           </div>
           <!-- Honeypot: hidden from real users, catches simple bots -->
           <div class="honeypot" aria-hidden="true">
@@ -228,8 +248,8 @@
           </div>
           <button type="submit" id="consult-submit" class="btn btn-primary" style="justify-self:start;">Send
             Request</button>
-          <p class="form-note">This opens a pre-filled WhatsApp message to Amali Curtain Center - nothing is sent until
-            you tap send there.</p>
+          <p class="form-note" id="form-note">Submitting will open a pre-filled WhatsApp chat with Amali Curtain Center.
+          </p>
           <div id="form-result"></div>
         </form>
       </div>
@@ -242,11 +262,12 @@
         </div>
         <div class="info-card">
           <h3>Call or message</h3>
-          <p><a href="tel:+94774104159" class="link-underline">077 410 4159</a></p>
-          <p style="margin-top:0.35rem;"><a href="https://wa.me/94774104159" target="_blank" rel="noopener"
-              class="link-underline">Chat on WhatsApp</a></p>
-          <p style="margin-top:0.35rem;"><a href="mailto:Amalicurtaincentre@gmail.com"
-              class="link-underline">Amalicurtaincentre@gmail.com</a></p>
+          <p><strong>Call:</strong> <a href="tel:+94774104159" class="link-underline">077 410 4159</a></p>
+          <p style="margin-top:0.35rem;"><strong>WhatsApp:</strong> <a href="https://wa.me/94779074068" target="_blank"
+              rel="noopener" class="link-underline">077 907 4068</a> | <a href="https://wa.me/94342267342"
+              target="_blank" rel="noopener" class="link-underline">034 226 7342</a></p>
+          <p style="margin-top:0.35rem;"><strong>Email:</strong> <a href="mailto:amalicurtaincenter@gmail.com"
+              class="link-underline">amalicurtaincenter@gmail.com</a></p>
         </div>
         <div class="info-card">
           <h3>Opening hours</h3>

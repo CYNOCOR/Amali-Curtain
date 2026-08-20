@@ -56,12 +56,29 @@
       overflow: hidden;
       background: linear-gradient(160deg, #EDE0CC, var(--cream-3));
       position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-drag: none;
     }
 
-    .story-photo img {
+    .story-photo img,
+    .no-download img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .story-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background: transparent;
     }
 
     .story-photo .fallback {
@@ -172,7 +189,7 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="https://wa.me/94774104159" aria-label="Chat on WhatsApp" class="icon-btn">
+        <a href="https://wa.me/94779074068" aria-label="Chat on WhatsApp" class="icon-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4C7.63 4 4.05 7.58 4.05 12c0 1.4.37 2.77 1.06 3.98L4 20l4.14-1.09a7.94 7.94 0 0 0 3.9 1.02h.01c4.42 0 8-3.58 8-8 0-2.14-.83-4.15-2.35-5.61zM12.05 18.4h-.01a6.4 6.4 0 0 1-3.26-.9l-.23-.14-2.42.64.65-2.36-.15-.24a6.42 6.42 0 0 1-.99-3.4c0-3.55 2.9-6.45 6.46-6.45 1.72 0 3.34.67 4.56 1.89a6.41 6.41 0 0 1 1.89 4.57c0 3.55-2.9 6.45-6.5 6.45z"
@@ -201,7 +218,7 @@
         <a href="about.html">Our Story</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
-        <a href="https://wa.me/94774104159">Chat on WhatsApp</a>
+        <a href="https://wa.me/94779074068">Chat on WhatsApp</a>
         <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
       </nav>
     </div>
@@ -217,9 +234,8 @@
   <!-- STORY -->
   <section class="section-lg">
     <div class="container story-grid">
-      <div class="story-photo reveal-left">
-        <img src="assets/images/hero-father.jpg"
-          alt="Father hand-tailoring curtain fabric at the Amali Curtain Center workshop" loading="lazy"
+      <div class="story-photo reveal-left" oncontextmenu="return false;">
+        <img src="assets/logos/logo.jpg" alt="Amali Curtain Center workshop" loading="lazy" draggable="false" oncontextmenu="return false;"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">[ Add assets/images/hero-father.jpg ]</div>
       </div>
@@ -236,42 +252,14 @@
     </div>
   </section>
 
-  <!-- WHY DIRECT -->
-  <section class="section-lg" style="background:var(--cream-1)">
-    <div class="container">
-      <h2 class="section-title">Why work directly with us</h2>
-      <div class="feature-grid">
-        <div class="reveal reveal-1">
-          <p class="feature-num">01</p>
-          <h3>Direct access</h3>
-          <p>No showroom staff or sales layer between you and the craftsman. You speak with the person who measures,
-            cuts, and installs your curtains.</p>
-        </div>
-        <div class="reveal reveal-2">
-          <p class="feature-num">02</p>
-          <h3>Honest pricing</h3>
-          <p>Without a commercial showroom to maintain, more of what you spend goes into premium fabric and careful
-            tailoring.</p>
-        </div>
-        <div class="reveal reveal-3">
-          <p class="feature-num">03</p>
-          <h3>Accountable craftsmanship</h3>
-          <p>One family stands behind every stitch and every install - and stays reachable long after the job is done.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- AFTERCARE -->
   <section class="section-lg">
     <div class="container">
-      <p class="eyebrow text-center" style="text-align:center;">The Amali Difference</p>
+      <p class="eyebrow text-center" style="text-align:center;">The Amali Curtain Center Difference</p>
       <h2 class="font-display text-center"
-        style="font-size:clamp(1.8rem,3.4vw,2.4rem); max-width:38rem; margin:0 auto 1rem;">A curtain isn't finished the
-        day it's installed.</h2>
-      <p class="muted text-center" style="max-width:34rem; margin:0 auto;">Amali customers get ongoing cleaning and
-        after-service - not a one-time sale. Here's what that looks like in practice.</p>
+        style="font-size:clamp(1.8rem,3.4vw,2.4rem); max-width:38rem; margin:0 auto 1rem;">Relationships Don’t End at Installation</h2>
+      <p class="muted text-center" style="max-width:34rem; margin:0 auto;">We believe great service lasts as long as your curtains. 
+        From routine cleaning to quick fixes, here is how we look after your home long-term.</p>
       <div class="aftercare-list">
         <div class="aftercare-item reveal reveal-1">
           <h3>Scheduled cleaning</h3>
@@ -309,6 +297,13 @@
   <script src="js/reveal.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/scroll-fx.js"></script>
+  <script>
+    // Protect logo/photo on Our Story page from right-click context menu and drag-download
+    document.querySelectorAll('.story-photo, .story-photo img, .logo-mark').forEach(el => {
+      el.addEventListener('contextmenu', e => e.preventDefault());
+      el.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
 </body>
 
 </html>

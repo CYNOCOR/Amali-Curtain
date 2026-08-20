@@ -1,5 +1,5 @@
 /* =========================================================
-   gallery.js — gallery page only
+   gallery.js - gallery page only
    Builds the masonry grid from gallery data objects
    and drives the click-to-enlarge lightbox with metadata.
    ========================================================= */
@@ -10,37 +10,79 @@
   // Sample data with metadata (title, description, location)
   const galleryData = [
     {
-      src: 'assets/h1.jpg',
+      src: 'assets/g1.png',
       title: 'Living Room Elegance',
       description: 'Double-pleated sheer and blackout combination providing a sophisticated look and optimal light control.',
       location: 'Horana'
     },
     {
-      src: 'assets/h2.jpg',
+      src: 'assets/g2.png',
       title: 'Master Bedroom Sheers',
       description: 'Lightweight linen sheers offering daytime privacy while maintaining natural light flow.',
       location: 'Bandaragama'
     },
     {
-      src: 'assets/h3.jpg',
+      src: 'assets/g3.png',
       title: 'Dining Area Velvet',
       description: 'Heavyweight velvet drapes with thermal blackout lining for a cozy, luxurious dining experience.',
       location: 'Panadura'
     },
     {
-      src: 'assets/h4.jpg',
+      src: 'assets/g4.png',
       title: 'Balcony Brass Rods',
       description: 'Custom brass-finish rods with easy-glide rings for wide balcony doors, tailored by hand.',
       location: 'Horana'
     },
     {
-      src: 'assets/h2.jpg',
+      src: 'assets/g5.png',
       title: 'Study Room Curtains',
       description: 'Minimalist pleated curtains perfectly suited for a home office environment.',
       location: 'Moratuwa'
     },
     {
-      src: 'assets/h3.jpg',
+      src: 'assets/g6.png',
+      title: 'Living Room Elegance',
+      description: 'Double-pleated sheer and blackout combination providing a sophisticated look and optimal light control.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/g7.png',
+      title: 'Master Bedroom Sheers',
+      description: 'Lightweight linen sheers offering daytime privacy while maintaining natural light flow.',
+      location: 'Bandaragama'
+    },
+    {
+      src: 'assets/g8.png',
+      title: 'Dining Area Velvet',
+      description: 'Heavyweight velvet drapes with thermal blackout lining for a cozy, luxurious dining experience.',
+      location: 'Panadura'
+    },
+    {
+      src: 'assets/g9.png',
+      title: 'Balcony Brass Rods',
+      description: 'Custom brass-finish rods with easy-glide rings for wide balcony doors, tailored by hand.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/g10.png',
+      title: 'Study Room Curtains',
+      description: 'Minimalist pleated curtains perfectly suited for a home office environment.',
+      location: 'Moratuwa'
+    },
+    {
+      src: 'assets/g11.png',
+      title: 'Guest Room Blackout',
+      description: 'Complete blackout drapes ensuring maximum comfort and privacy for guests.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/g12.png',
+      title: 'Guest Room Blackout',
+      description: 'Complete blackout drapes ensuring maximum comfort and privacy for guests.',
+      location: 'Horana'
+    },
+    {
+      src: 'assets/g13.png',
       title: 'Guest Room Blackout',
       description: 'Complete blackout drapes ensuring maximum comfort and privacy for guests.',
       location: 'Horana'
@@ -55,7 +97,7 @@
     // Store index to retrieve data later
     item.dataset.index = index;
     item.innerHTML = `
-      <img src="${data.src}" alt="${data.title} — curtains by Amali Curtain Center" loading="lazy"
+      <img src="${data.src}" alt="${data.title} - curtains by Amali Curtain Center" loading="lazy"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="gallery-fallback">${data.title}</div>
     `;
@@ -77,14 +119,14 @@
 
   function showLightboxImage(index) {
     if (!galleryData.length) return;
-    
+
     // Wrap around index
     currentIndex = (index + galleryData.length) % galleryData.length;
     const itemData = galleryData[currentIndex];
-    
+
     lightboxImg.src = itemData.src;
     lightboxImg.alt = itemData.title;
-    
+
     // Update metadata
     lightboxTitle.textContent = itemData.title;
     lightboxDesc.textContent = itemData.description;
@@ -92,7 +134,7 @@
 
     // Update counter
     lightboxCounter.textContent = galleryData.length > 1 ? `${currentIndex + 1} / ${galleryData.length}` : '';
-    
+
     // Navigation visibility
     const multi = galleryData.length > 1;
     lightboxPrev.style.display = multi ? 'flex' : 'none';
@@ -102,7 +144,7 @@
   galleryEl.addEventListener('click', (e) => {
     const item = e.target.closest('.gallery-item');
     if (!item) return;
-    
+
     const index = parseInt(item.dataset.index, 10);
     if (isNaN(index)) return;
 
@@ -121,11 +163,11 @@
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showLightboxImage(currentIndex - 1); });
   lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showLightboxImage(currentIndex + 1); });
-  
+
   // Close when clicking the background overlay
-  lightbox.addEventListener('click', (e) => { 
+  lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
-      closeLightbox(); 
+      closeLightbox();
     }
   });
 

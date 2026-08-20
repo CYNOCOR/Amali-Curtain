@@ -1,9 +1,3 @@
-/* =========================================================
-   nav.js — shared header behaviour for every page
-   - mobile menu open/close
-   - marks the current page's nav link as active
-   - smooth-scrolls same-page anchor links (accounts for sticky header)
-   ========================================================= */
 (function () {
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');

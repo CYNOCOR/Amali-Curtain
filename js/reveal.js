@@ -1,12 +1,12 @@
 /* =========================================================
-   reveal.js — Bidirectional scroll animation engine
+   reveal.js - Bidirectional scroll animation engine
    Elements animate IN when entering viewport and
-   animate OUT when leaving — re-triggering every time.
+   animate OUT when leaving - re-triggering every time.
    ========================================================= */
 (function () {
   'use strict';
 
-  /* Respect user preference — show everything immediately */
+  /* Respect user preference - show everything immediately */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll(
       '.reveal,.reveal-up,.reveal-left,.reveal-right,.reveal-scale,.reveal-fade'
@@ -77,11 +77,11 @@
     const delay = parseFloat(parent.dataset.staggerChildren) || 0.10;
     [...parent.children].forEach((child, i) => {
       if (!child.classList.contains('reveal') &&
-          !child.classList.contains('reveal-up') &&
-          !child.classList.contains('reveal-left') &&
-          !child.classList.contains('reveal-right') &&
-          !child.classList.contains('reveal-scale') &&
-          !child.classList.contains('reveal-fade')) {
+        !child.classList.contains('reveal-up') &&
+        !child.classList.contains('reveal-left') &&
+        !child.classList.contains('reveal-right') &&
+        !child.classList.contains('reveal-scale') &&
+        !child.classList.contains('reveal-fade')) {
         child.classList.add('reveal-up');
       }
       child.dataset.staggerDelay = (i * delay).toFixed(2);

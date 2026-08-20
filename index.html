@@ -361,7 +361,7 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="https://wa.me/94774104159" aria-label="Chat on WhatsApp" class="icon-btn">
+        <a href="https://wa.me/94779074068" aria-label="Chat on WhatsApp" class="icon-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4C7.63 4 4.05 7.58 4.05 12c0 1.4.37 2.77 1.06 3.98L4 20l4.14-1.09a7.94 7.94 0 0 0 3.9 1.02h.01c4.42 0 8-3.58 8-8 0-2.14-.83-4.15-2.35-5.61zM12.05 18.4h-.01a6.4 6.4 0 0 1-3.26-.9l-.23-.14-2.42.64.65-2.36-.15-.24a6.42 6.42 0 0 1-.99-3.4c0-3.55 2.9-6.45 6.46-6.45 1.72 0 3.34.67 4.56 1.89a6.41 6.41 0 0 1 1.89 4.57c0 3.55-2.9 6.45-6.5 6.45z"
@@ -390,7 +390,7 @@
         <a href="about.html">Our Story</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
-        <a href="https://wa.me/94774104159">Chat on WhatsApp</a>
+        <a href="https://wa.me/94779074068">Chat on WhatsApp</a>
         <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
       </nav>
     </div>
@@ -404,8 +404,8 @@
       </video>
     </div>
     <div class="container hero-content reveal">
-      <div class="hero-brand" aria-label="Amali Curtain Center logo">
-        <img src="assets/logos/logo.png" alt="Amali Curtain Center logo" style="width:100%;height:auto;display:block;">
+      <div class="hero-brand" aria-label="Amali Curtain Center logo" oncontextmenu="return false;">
+        <img src="assets/logos/logo.png" alt="Amali Curtain Center logo" draggable="false" oncontextmenu="return false;" style="width:100%;height:auto;display:block;">
       </div>
 
       <!-- Minimal hero: show only logo, two glass buttons and phone -->
@@ -449,9 +449,9 @@
   <!-- AFTERCARE STRIP -->
   <section class="section-lg aftercare-strip">
     <div class="container">
-      <p class="eyebrow">The Amali Difference</p>
+      <p class="eyebrow">The Amali Curtain Centre Difference</p>
       <h2 class="font-display">A curtain isn't finished the day it's installed.</h2>
-      <p>Amali customers get ongoing cleaning and after-service - not a one-time sale. We stay part of your home's
+      <p>Amali Curtain Centre customers get ongoing cleaning and after-service - not a one-time sale. We stay part of your home's
         upkeep for years, something most retail shops simply don't offer.</p>
     </div>
   </section>
@@ -500,6 +500,13 @@
   <script src="js/footer.js"></script>
   <script src="js/home.js"></script>
   <script src="js/scroll-fx.js"></script>
+  <script>
+    // Protect home logo from right-click context menu and drag-download
+    document.querySelectorAll('.hero-brand, .hero-brand img, .logo-mark, .logo img').forEach(el => {
+      el.addEventListener('contextmenu', e => e.preventDefault());
+      el.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
 </body>
 
 </html>
